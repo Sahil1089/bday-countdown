@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>birthday countdown</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            height: 100%;
+            width: 100%;
+        }
+        .main{
+            height: 99%;
+            width: 100%;
+            background-color: #0b9ca1d3;
+
+        }
+        .container{
+            height: 100vh;
+            width:100%;
+            position: relative;
+           
+            
+            
+            background-image: url("https://img.freepik.com/premium-photo/colorful-birthday-party-theme-background-ai-generated_804788-32961.jpg");
+            background-size: cover;
+               
+
+        }
+        .cover{
+            height: 40vh;
+            width: 40%;
+          
+            display: flex;
+            position: relative;
+            top: 40%;
+            left: 30%;
+            gap: 4vw;
+        }
+        .cover .timecont{
+            width: fit-content;
+            display:flex;
+            flex-direction: column;
+            gap: 4vh;
+            color: white;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        label{
+            font-size: 2.9vw;
+            font-weight: 300;
+        }
+       
+        .cover input{
+            height: 8.5vw;
+            width: 8.5vw;
+            background-color: #ffffff67;
+            border-radius: 8px;
+            backdrop-filter: blur(12px);
+            border: none;  
+            color:white;
+               
+        }
+        .container .bdtext{
+            font-size: 3.4vw;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            top: 30%;
+            left: 38%;
+            
+            color: rgb(211, 208, 208);
+            
+
+        }
+        .container #dob{
+            position: absolute;
+            top: 10%;
+        }
+    .dobvisi{
+        opacity: 0;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <input id="dob" class="a" type="date" value="0000-00-00">
+            <div class="bdtext" id="enddate">
+                
+                20 february 2025 12:01
+            </div>
+
+            <div class="cover">
+                <div class="timecont">
+                 <input id="bd" type="text" readonly value = 0>
+                 <label for="">Days</label>
+                </div>
+
+                <div class="timecont">
+                    <input  id="bd"    type="text" readonly value = 0>
+                    <label for="">Hour</label>
+                   </div>
+
+                   <div class="timecont">
+                    <input id="bd" type="text" readonly value = 0>
+                    <label for="">Minute</label>
+                   </div>
+
+                   <div class="timecont">
+                    <input  id="bd"  type="text" readonly value = 0>
+                    <label for="">Second</label>
+                   </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+   <script>
+    const dob = document.querySelector("#dob");
+    const enddate = "1 september 2024 11:58 pm";
+    const input = document.querySelectorAll("#bd");
+
+     document.querySelector("#enddate").innerText = enddate;
+     const clock =()=>{
+        // given date
+        const end = new Date(enddate);
+        // current date
+        const now = new Date();
+
+        // differnce in second
+        const diff = (end-now)/1000;
+
+        console.log(end,now,diff)
+        // if(diff < 0) return
+       
+        // days counting
+        const days =Math.floor (diff/3600/24);
+        console.log(days,"days");
+        input[0].value = days;
+        // counting hour
+        const hour = Math.floor (diff/3600)%24;
+        input[1].value = hour;
+        // minutes
+        const minutes = Math.floor (diff/60)%60;
+        input[2].value = minutes;
+        // seconds
+        const seconds = Math.floor (diff)%60;
+        input[3].value = seconds;
+
+
+        if (diff<0){
+        clearInterval(x);
+        console.log("happy birthday")
+      } 
+
+
+     }
+      clock();
+      let x = setInterval(
+        ()=>{
+            clock()
+        },1000
+      );
+      
+if(dob.value!="0000-00-00"){
+    dob.classList.add(".dobvisi");
+}
+else{
+    dob.classList.remove(".dobvisi");
+}
+
+
+
+   </script> 
+</body>
+</html>
